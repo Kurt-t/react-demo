@@ -33,6 +33,7 @@
                 console.log("did mount");
             }
             updateUser = () => {
+                console.log(this);  // to see if this here is bind to an instance
                 // this.state.name = "Tim"  // is wrong, won't trigger render()
                 this.setState({
                     name: "Tim",
