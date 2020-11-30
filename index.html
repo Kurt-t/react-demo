@@ -16,15 +16,16 @@
 <body>
     <div id="app"></div>
     <script type="text/babel">
+        function Login(props) {
+            return <button onClick={props.update}>Login</button>
+        }
+        function Logout(props) {
+            return <button onClick={props.update}>Logout</button>
+        }
         // class component
         class Hello extends React.Component{
-            constructor(props) {
-                console.log("initializing");
-                super(props);
-                this.state = {
-                    name: "Kurt",
-                    age: 20
-                }
+            state = {
+                isLogin: false
             }
             componentWillMount() {
                 console.log("will mount");
@@ -36,8 +37,7 @@
                 console.log(this);  // to see if this here is bind to an instance
                 // this.state.name = "Tim"  // is wrong, won't trigger render()
                 this.setState({
-                    name: "Tim",
-                    age: 24
+                    isLogin: !this.state.isLogin
                 })
             }
             shouldComponentUpdate() {
@@ -52,10 +52,17 @@
             }
             render() {
                 console.log("mounting or data updating")
+                const isLogin = this.state.isLogin;
+                let button;
+                if (isLogin) {
+                    button = <Login/>
+                }
+                else {
+                    button = <Logout/>
+                }
                 return <div>
                 <h1>Hello {this.state.name}</h1>
-                <p>age: {this.state.age}</p>
-                <p>skills: JavaScript</p>
+                {isLogin?<Login update={this.updateUser}/>:<Logout update={this.updateUser}/>}
                 <button onClick={this.updateUser}>Update</button>
                 </div>
             }
