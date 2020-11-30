@@ -16,13 +16,16 @@
 <body>
     <div id="app"></div>
     <script type="text/babel">
-        var hello = React.createElement('h1', {
-            className: 'red',
-            name: 'Kurt'
-        }, "Hello World");
         var name = 'Kurt';
-        var ele = <h1 className="red" name={name}>Hello {name}</h1>
-        ReactDOM.render(ele, document.getElementById('app'));
+        function tick() {
+            var time = new Date().toLocaleDateString([], {hour: '2-digit', minute: '2-digit', second: '2-digit'});
+            var ele = <div>
+                <h1 className="red" name={name}>Hello {name}</h1>
+                <h2>now is {time}</h2>
+                </div>;
+            ReactDOM.render(ele, document.getElementById('app'));
+        }
+        setInterval(tick, 1000);
     </script>
 </body>
 </html>
