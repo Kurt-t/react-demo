@@ -16,24 +16,50 @@
 <body>
     <div id="app"></div>
     <script type="text/babel">
-        // function component 函数组件
-        function Hello(props) {
-            return <div>
-                <h1>Hello {props.name}</h1>
-                <p>age: {props.age}</p>
-                </div>
-        }
         // class component
-        class HelloKurt extends React.Component{
+        class Hello extends React.Component{
+            constructor(props) {
+                console.log("initializing");
+                super(props);
+                this.state = {
+                    name: "Kurt",
+                    age: 20
+                }
+            }
+            componentWillMount() {
+                console.log("will mount");
+            }
+            componentDidMount() {
+                console.log("did mount");
+            }
+            updateUser = () => {
+                // this.state.name = "Tim"  // is wrong, won't trigger render()
+                this.setState({
+                    name: "Tim",
+                    age: 24
+                })
+            }
+            shouldComponentUpdate() {
+                console.log("should component update");
+                return true;
+            }
+            componentWillUpdate() {
+                console.log("Component will update");
+            }
+            componentDidUpdate() {
+                console.log("Component did update");
+            }
             render() {
+                console.log("mounting or data updating")
                 return <div>
-                <h1>Hello {this.props.name}</h1>
-                <p>age: {this.props.age}</p>
+                <h1>Hello {this.state.name}</h1>
+                <p>age: {this.state.age}</p>
                 <p>skills: JavaScript</p>
+                <button onClick={this.updateUser}>Update</button>
                 </div>
             }
         }
-        ReactDOM.render(<HelloKurt name="Kurt" age="22"/>, document.getElementById('app'));
+        ReactDOM.render(<Hello/>, document.getElementById('app'));
     </script>
 </body>
 </html>
