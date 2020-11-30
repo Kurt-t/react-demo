@@ -1,0 +1,10 @@
+{
+  "name": "react-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Kurt",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.1"
+  }
+}
